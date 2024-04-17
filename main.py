@@ -20,6 +20,15 @@ def show_selected():
 root = tk.Tk()
 root.title("Checkbox Example")
 
+#Create a label for the name input
+name_label = tk.Label(root, text="Employee name:")
+name_label.pack()
+
+#Create a textbox for name input
+name_var = tk.StringVar()
+name_entry = tk.Entry(root, textvariable=name_var)
+name_entry.pack()
+
 # Create some checkboxes
 options = ["Computer", "Mobil", "Headset", "Nøgle Brik", "Oplader", "Taske", "Andet"]
 checkboxes = []
@@ -33,10 +42,7 @@ for option in options:
     entry.pack()
     entries.append(entry)
 
-#Create a textbox for name input
-name_var = tk.StringVar()
-name_entry = tk.Entry(root, textvariable=name_var)
-name_entry.pack()
+
 
 # Create a button to submit selected checkboxes
 show_button = tk.Button(root, text="Submit", command=show_selected)

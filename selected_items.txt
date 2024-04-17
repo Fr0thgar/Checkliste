@@ -1,8 +1,8 @@
 Selected items:
-Computer: test
-Mobil: test2
-Headset: test3
-Nøgle Brik: test4
-Oplader: test5
-Taske: test6
-Andet: test7
+Computer: yes
+Mobil: no
+Headset: tes
+Nøgle Brik:  ager
+Oplader: aehneatoihe
+Taske: niobneabio
+Andet:  ngioeanhtieaonbaet
