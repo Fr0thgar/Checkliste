@@ -1,8 +1,12 @@
 import tkinter as tk
+import os
 
 def show_selected():
     selected_items = [var.get() for var in checkboxes]
-    print("Selected items:", selected_items)
+    file_path = os.path.join(os.getcwd(), "selected_items.txt")
+    with open(file_path, "w") as f:
+        f.write("Selected items:\n")
+    print("Selected items have been saved to selected_items.txt")
 
 # Create the main application window
 root = tk.Tk()
