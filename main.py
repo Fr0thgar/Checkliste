@@ -4,17 +4,22 @@ import os
 def show_selected():
     selected_items = [var.get() for var in checkboxes]
     selected_text = [entry.get() for entry in entries]
+    name = name_var.get()
+    selected_items.append(name)
     selected_items_dict = {option: text for option, text in zip(options, selected_text) if selected_items[options.index(option)]}
     file_path = os.path.join(os.getcwd(), "selected_items.txt")
     with open(file_path, "w") as f:
+        f.write("Employee Name: " + name + "\n")
         f.write("Selected items:\n")
         for option, text in selected_items_dict.items():
                 f.write(f"{option}: {text}\n")
     print("Selected items have been saved to selected_items.txt")
+    # Clear the checkmarks, text, and name input
     for var in checkboxes:
         var.set(0)
     for entry in entries:
          entry.delete(0, tk.END)
+    name_var.set("")
 
 # Create the main application window
 root = tk.Tk()
@@ -41,8 +46,6 @@ for option in options:
     entry = tk.Entry(root)
     entry.pack()
     entries.append(entry)
-
-
 
 # Create a button to submit selected checkboxes
 show_button = tk.Button(root, text="Submit", command=show_selected)

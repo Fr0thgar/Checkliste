@@ -1,8 +1,9 @@
+Name: test
 Selected items:
-Computer: yes
-Mobil: no
-Headset: tes
-Nøgle Brik:  ager
-Oplader: aehneatoihe
-Taske: niobneabio
-Andet:  ngioeanhtieaonbaet
+Computer: test2
+Mobil: 1234
+Headset: tera
+Nøgle Brik: 653
+Oplader: 5h
+Taske: 424
+Andet: 312
