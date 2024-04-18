@@ -57,7 +57,8 @@ for option in options:
     entries.append(entry)
 
 # Create a button to submit selected checkboxes
-show_button = tk.Button(root, text="Submit", command=show_selected)
+show_button = tk.Button(master = root, text="Submit", 
+                                      command=show_selected)
 show_button.pack()
 
 # Start the GUI event loop
