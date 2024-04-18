@@ -7,8 +7,9 @@ def show_selected():
     selected_text = [entry.get() for entry in entries]
     name = name_var.get()
     selected_items.append(name)
-    selected_items_dict = {option: text for option, text in zip(options, 
-                                                                selected_text) if selected_items[options.index(option)]}
+    selected_items_dict = {
+         option: text for option, 
+         text in zip(options, selected_text) if selected_items[options.index(option)]}
     current_month = datetime.now().strftime("%B")
     current_date = datetime.now().strftime("%d")
     current_year = datetime.now().strftime("%Y")
