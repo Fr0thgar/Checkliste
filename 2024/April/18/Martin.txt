@@ -1,0 +1,3 @@
+Employee Name: Martin
+Selected items:
+Computer: 2
