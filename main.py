@@ -1,19 +1,26 @@
 import tkinter as tk
 import os
+from datetime import datetime
 
 def show_selected():
     selected_items = [var.get() for var in checkboxes]
     selected_text = [entry.get() for entry in entries]
     name = name_var.get()
     selected_items.append(name)
-    selected_items_dict = {option: text for option, text in zip(options, selected_text) if selected_items[options.index(option)]}
-    file_path = os.path.join(os.getcwd(), "selected_items.txt")
+    selected_items_dict = {option: text for option, text in zip(options, 
+                                                                selected_text) if selected_items[options.index(option)]}
+    current_month = datetime.now().strftime("%B")
+    current_date = datetime.now().strftime("%d")
+    current_year = datetime.now().strftime("%Y")
+    folder_path = os.path.join(os.getcwd(), current_year, current_month, current_date)
+    os.makedirs(folder_path, exist_ok=True)
+    file_path = os.path.join(folder_path, name + ".txt")
     with open(file_path, "w") as f:
         f.write("Employee Name: " + name + "\n")
         f.write("Selected items:\n")
         for option, text in selected_items_dict.items():
                 f.write(f"{option}: {text}\n")
-    print("Selected items have been saved to selected_items.txt")
+    print("Selected items have been saved to " + name + ".txt")
     # Clear the checkmarks, text, and name input
     for var in checkboxes:
         var.set(0)
@@ -35,7 +42,8 @@ name_entry = tk.Entry(root, textvariable=name_var)
 name_entry.pack()
 
 # Create some checkboxes
-options = ["Computer", "Mobil", "Headset", "Nøgle Brik", "Oplader", "Taske", "Andet"]
+options = ["Computer", "Mobil", "Headset", "Nøgle Brik", 
+           "Oplader", "Taske", "Andet"]
 checkboxes = []
 entries = []
 for option in options:

@@ -1,9 +1,9 @@
-Name: test
+Employee Name: test
 Selected items:
-Computer: test2
-Mobil: 1234
-Headset: tera
-Nøgle Brik: 653
-Oplader: 5h
-Taske: 424
-Andet: 312
+Computer: tes
+Mobil: es
+Headset: te
+Nøgle Brik: 13
+Oplader: ye
+Taske: nah
+Andet: meg
