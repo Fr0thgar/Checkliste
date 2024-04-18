@@ -3,7 +3,7 @@ import customtkinter
 import os
 from datetime import datetime
 
-customtkinter.set_default_color_theme("green")
+customtkinter.set_default_color_theme("./theme.json")
 
 def show_selected():
     selected_items = [var.get() for var in checkboxes]
@@ -54,7 +54,7 @@ entries = []
 for option in options:
     var = customtkinter.IntVar()
     checkbox = customtkinter.CTkCheckBox(root, text=option, variable=var)
-    checkbox.pack(anchor=customtkinter.W)
+    checkbox.pack(anchor=customtkinter.SW)
     checkboxes.append(var)
     entry = customtkinter.CTkEntry(root)
     entry.pack()
