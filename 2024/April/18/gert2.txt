@@ -1,4 +1,0 @@
-Employee Name: gert2
-Selected items:
-Computer: 1
-Mobil: 1

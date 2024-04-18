@@ -3,6 +3,8 @@ import customtkinter
 import os
 from datetime import datetime
 
+customtkinter.set_default_color_theme("green")
+
 def show_selected():
     selected_items = [var.get() for var in checkboxes]
     selected_text = [entry.get() for entry in entries]
@@ -32,7 +34,7 @@ def show_selected():
 
 # Create the main application window
 root = customtkinter.CTk()
-root.title("Checkbox Example")
+root.title("Log Employee Equiptment")
 root.geometry("500x500")
 
 #Create a label for the name input

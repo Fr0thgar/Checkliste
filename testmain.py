@@ -3,6 +3,8 @@ import customtkinter
 import os
 from datetime import datetime
 
+customtkinter.set_default_color_theme("./dark-blue.json")
+
 def show_selected():
     selected_items = [var.get() for var in checkboxes]
     selected_text = [entry.get() for entry in entries]
