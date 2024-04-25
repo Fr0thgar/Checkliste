@@ -1,7 +1,7 @@
 from tkinter import *
 import customtkinter
 import os
-#import pymongo
+import docx
 from datetime import datetime
 
 customtkinter.set_default_color_theme("./theme.json")
@@ -14,6 +14,8 @@ def show_selected():
     selected_items_dict = {
          option: text for option, 
          text in zip(options, selected_text) if selected_items[options.index(option)]}
+    
+    # Creates the . txt file 
     current_month = datetime.now().strftime("%B")
     current_date = datetime.now().strftime("%d")
     current_year = datetime.now().strftime("%Y")
@@ -32,10 +34,18 @@ def show_selected():
     for entry in entries:
          entry.delete(0, customtkinter.END)
     name_var.set("")
+    # Creates the Docx file
+    doc = docx.Document()
+    doc.add_paragraph("Employee Name: " + name + "\n")
+    doc.add_paragraph("Selected Items: \n")
+    for option in selected_items_dict.items():
+         doc.add_paragraph(f"{option}: {text}: \n")
+    doc.save(os.path.join(folder_path, name + ".docx"))
+
 
 # Create the main application window
 root = customtkinter.CTk()
-root.title("Log Employee Equiptment")
+root.title("Checkbox Example")
 root.geometry("500x500")
 
 #Create a label for the name input
@@ -55,7 +65,7 @@ entries = []
 for option in options:
     var = customtkinter.IntVar()
     checkbox = customtkinter.CTkCheckBox(root, text=option, variable=var)
-    checkbox.pack(anchor=customtkinter.SW)
+    checkbox.pack(anchor=customtkinter.W)
     checkboxes.append(var)
     entry = customtkinter.CTkEntry(root)
     entry.pack()
