@@ -1,6 +1,7 @@
 from tkinter import *
 import customtkinter
 import os
+import shutil
 import docx
 from datetime import datetime
 
@@ -15,32 +16,53 @@ def show_selected():
          option: text for option, 
          text in zip(options, selected_text) if selected_items[options.index(option)]}
     
-    # Creates the . txt file 
+    # Copy the Template.docx file with Employee name
+    template_path = r"C:\Users\jbs\Code\Checkliste\Template.docx"
+    copy_path = f"{name}.docx"
+    shutil.copyfile(template_path, copy_path)
+    
+    # Open the copied template
+    doc = docx.Document(copy_path)
+    for paragraph in doc.paragraphs:
+         paragraph.text = "Employee Name: " + name + "\n"
+
+
+    # Insert the selected items
+    doc.add_paragraph("Selected Items: \n")
+    for option, text in selected_items_dict.items():
+         doc.add_paragraph(f"{option}: {text}\n")
+    
+    # Save the updaed document to a new file in a folder named month and date
     current_month = datetime.now().strftime("%B")
     current_date = datetime.now().strftime("%d")
     current_year = datetime.now().strftime("%Y")
     folder_path = os.path.join(os.getcwd(), current_year, current_month, current_date)
     os.makedirs(folder_path, exist_ok=True)
-    file_path = os.path.join(folder_path, name + ".txt")
-    with open(file_path, "w") as f:
-        f.write("Employee Name: " + name + "\n")
-        f.write("Selected items:\n")
-        for option, text in selected_items_dict.items():
-                f.write(f"{option}: {text}\n")
-    print("Selected items have been saved to " + name + ".txt")
+    file_path = os.path.join(folder_path, name + ".docx")
+    doc.save(file_path)
+    
+    """# Commented out section 
+    #with open(file_path, "w") as f:
+    #    f.write("Employee Name: " + name + "\n")
+    #    f.write("Selected items:\n")
+    #   for option, text in selected_items_dict.items():
+    #            f.write(f"{option}: {text}\n")
+    #print("Selected items have been saved to " + name + ".txt")"""
+    
     # Clear the checkmarks, text, and name input
     for var in checkboxes:
         var.set(0)
     for entry in entries:
          entry.delete(0, customtkinter.END)
     name_var.set("")
-    # Creates the Docx file
+    
+    """# Creates the Docx file
     doc = docx.Document()
     doc.add_paragraph("Employee Name: " + name + "\n")
     doc.add_paragraph("Selected Items: \n")
     for option in selected_items_dict.items():
          doc.add_paragraph(f"{option}: {text}: \n")
-    doc.save(os.path.join(folder_path, name + ".docx"))
+    doc.save(os.path.join(folder_path, name + ".docx"))"""
 
 
 # Create the main application window
