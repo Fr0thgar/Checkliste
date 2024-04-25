@@ -1,6 +1,7 @@
 from tkinter import *
 import customtkinter
 import os
+import docx
 from datetime import datetime
 
 customtkinter.set_default_color_theme("./dark-blue.json")
@@ -13,6 +14,13 @@ def show_selected():
     selected_items_dict = {
          option: text for option, 
          text in zip(options, selected_text) if selected_items[options.index(option)]}
+    doc = docx.Document()
+    doc.add_paragraph("Employee Name: " + name + "\n")
+    doc.add_paragraph("Selected Items: \n")
+    for option in selected_items_dict.items():
+         doc.add_paragraph(f"{option}: {text}: \n")
+    doc.save(os.path.join(folder_path, name + ".docx"))
+    # Creates the . txt file 
     current_month = datetime.now().strftime("%B")
     current_date = datetime.now().strftime("%d")
     current_year = datetime.now().strftime("%Y")
