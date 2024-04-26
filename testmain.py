@@ -16,38 +16,32 @@ def show_selected():
          option: text for option, 
          text in zip(options, selected_text) if selected_items[options.index(option)]}
     
-    # Copy the Template.docx file with Employee name
-    template_path = r"C:\Users\jbs\Code\Checkliste\Template.docx"
-    copy_path = f"{name}.docx"
-    shutil.copyfile(template_path, copy_path)
-    
-    # Open the copied template
-    doc = docx.Document(copy_path)
-    for paragraph in doc.paragraphs:
-         paragraph.text = "Employee Name: " + name + "\n"
-
-
-    # Insert the selected items
-    doc.add_paragraph("Selected Items: \n")
-    for option, text in selected_items_dict.items():
-         doc.add_paragraph(f"{option}: {text}\n")
-    
     # Save the updaed document to a new file in a folder named month and date
     current_month = datetime.now().strftime("%B")
     current_date = datetime.now().strftime("%d")
     current_year = datetime.now().strftime("%Y")
     folder_path = os.path.join(os.getcwd(), current_year, current_month, current_date)
     os.makedirs(folder_path, exist_ok=True)
-    file_path = os.path.join(folder_path, name + ".docx")
-    doc.save(file_path)
     
-    """# Commented out section 
-    #with open(file_path, "w") as f:
-    #    f.write("Employee Name: " + name + "\n")
-    #    f.write("Selected items:\n")
-    #   for option, text in selected_items_dict.items():
-    #            f.write(f"{option}: {text}\n")
-    #print("Selected items have been saved to " + name + ".txt")"""
+    # Specify the file path for the copied template
+    file_path = os.path.join(folder_path, f"{name}.docx")
+
+    # Copy the Template.docx file with Employee name
+    template_path = r"C:\Users\jbs\Code\Checkliste\Template.docx"
+    shutil.copyfile(template_path, file_path)
+
+    # Open the copied template
+    doc = docx.Document(file_path)
+    for paragraph in doc.paragraphs:
+         paragraph.text = "Employee Name: " + name + "\n"
+
+    # Insert the selected items
+    doc.add_paragraph("Selected Items: \n")
+    for option, text in selected_items_dict.items():
+         doc.add_paragraph(f"{option}: {text}\n")
+
+    # Save the updated document 
+    doc.save(file_path)
     
     # Clear the checkmarks, text, and name input
     for var in checkboxes:
@@ -64,7 +58,14 @@ def show_selected():
          doc.add_paragraph(f"{option}: {text}: \n")
     doc.save(os.path.join(folder_path, name + ".docx"))"""
 
-
+    """# Commented out section 
+    #with open(file_path, "w") as f:
+    #    f.write("Employee Name: " + name + "\n")
+    #    f.write("Selected items:\n")
+    #   for option, text in selected_items_dict.items():
+    #            f.write(f"{option}: {text}\n")
+    #print("Selected items have been saved to " + name + ".txt")"""
+    
 # Create the main application window
 root = customtkinter.CTk()
 root.title("Checkbox Example")
